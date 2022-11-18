@@ -28,8 +28,11 @@ public class CalculatorImpl implements Calculator {
 			return c;
 		case mul:
 			return a * b;
-			case mod:
-				return a % b;
+		case mod:
+			double m = a % b;
+			if (b == 0)
+				throw new CalculatorException("Division by zero");
+			return m;
 		}
 
 		return 0;
