@@ -151,7 +151,7 @@ public class CalculatorTest {
 			fail("Exception expected");
 
 
-		} catch (CalculatorException e) {
+		} catch (NegativeArraySizeException e) {
 			assertEquals("Negative length of vector", e.getMessage());
 			// e.getCause()
 		}
