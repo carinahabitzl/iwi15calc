@@ -116,4 +116,44 @@ public class CalculatorTest {
 			// e.getCause()
 		}
 	}
+
+	@Test
+	public void testSimpleDotOperation() throws Exception {
+
+		//setup
+		Calculator calc = new CalculatorImpl();
+
+		//execute
+		calc.push(1.0);
+		calc.push(3);
+		calc.push(2);
+		calc.push(4);
+		calc.push(2);
+		double result = calc.perform(Operation.dot);
+
+		//verify
+		assertEquals(14, result, 0);
+	}
+
+	@Test
+	public void negativeTestSimpleDotOperation() throws Exception {
+
+		//Setup
+		Calculator calc = new CalculatorImpl();
+		try {
+			calc.push(1.0);
+			calc.push(3);
+			calc.push(2);
+			calc.push(4);
+			calc.push(-2);
+			calc.perform(Operation.dot);
+
+			fail("Exception expected");
+
+
+		} catch (CalculatorException e) {
+			assertEquals("Negative length of vector", e.getMessage());
+			// e.getCause()
+		}
+	}
 }

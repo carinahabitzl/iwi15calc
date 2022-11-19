@@ -69,4 +69,21 @@ public class ParserTest {
 
 		verifyNoMoreInteractions(cal);
 	}*/
+
+	@Test
+	public void testParserTest10Xml() throws Exception {
+		Calculator cal = mock(Calculator.class);
+
+		Parser parser = new Parser(cal);
+		parser.parse(new File("src/test/resources/test10.xml"));
+
+		verify(cal).push(1.0);
+		verify(cal).push(3.0);
+		verify(cal,times(2)).push(2.0);
+		verify(cal).push(4.0);
+		verify(cal).perform(Operation.dot);
+
+		verifyNoMoreInteractions(cal);
+	}
+
 }
