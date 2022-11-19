@@ -8,51 +8,62 @@ import at.edu.c02.calculator.CalculatorException;
 
 public class CalculatorImpl implements Calculator {
 
-	private Stack<Double> stack_ = new Stack<Double>();
+    private Stack<Double> stack_ = new Stack<Double>();
 
-	@Override
-	public double perform(Operation op) throws CalculatorException {
+    @Override
+    public double perform(Operation op) throws CalculatorException {
+        double a;
+        double b;
+        if (op == Operation.sin || op == Operation.cos) {
+            a = pop();
+            b = 0;
+        } else {
 
-		double b = pop();
-		double a = pop();
+            a = pop();
+            b = pop();
+        }
 
-		switch (op) {
-		case add:
-			return a + b;
-		case sub:
-			return a - b;
-		case div:
-			double c = a / b;
-			if (Double.isInfinite(c))
-				throw new CalculatorException("Division by zero");
-			return c;
-		case mul:
-			return a * b;
-		case mod:
-			double m = a % b;
-			if (b == 0)
-				throw new CalculatorException("Division by zero");
-			return m;
-		}
+        switch (op) {
+            case add:
+                return a + b;
+            case sub:
+                return a - b;
+            case div:
+                double c = a / b;
+                if (Double.isInfinite(c))
+                    throw new CalculatorException("Division by zero");
+                return c;
+            case mul:
+                return a * b;
+            case mod:
+                double m = a % b;
+                if (b == 0)
+                    throw new CalculatorException("Division by zero");
+                return m;
+            case sin:
+                return Math.sin(a);
 
-		return 0;
-	}
+            case cos:
+                return Math.cos(a);
+        }
+        return 0;
+    }
 
-	@Override
-	public double pop() throws CalculatorException {
-		if (stack_.isEmpty())
-			throw new CalculatorException();
-		return stack_.pop();
-	}
+    @Override
+    public double pop() throws CalculatorException {
+        if (stack_.isEmpty())
+            throw new CalculatorException();
+        return stack_.pop();
+    }
 
-	@Override
-	public void push(double v) {
-		stack_.push(v);
-	}
+    @Override
+    public void push(double v) {
+        stack_.push(v);
+    }
 
-	@Override
-	public void clear() {
-		stack_.clear();
-	}
+    @Override
+    public void clear() {
+        stack_.clear();
+    }
 
 }
