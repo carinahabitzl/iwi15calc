@@ -11,20 +11,23 @@ public class CalculatorImpl implements Calculator {
 
 	private Stack<Double> stack_ = new Stack<Double>();
 
-	@Override
-	public double perform(Operation op) throws CalculatorException {
+    @Override
+    public double perform(Operation op) throws CalculatorException {
+        double a;
+        double b;
 
 		if (op == Operation.dot){
-
 			return dotLogic();
-
 		}
 
-		else {
+		else if (op == Operation.sin || op == Operation.cos) {
+            a = pop();
+            b = 0;
+        } else {
 
-			double b = pop();
-			double a = pop();
-
+			b = pop();
+			a = pop();
+		}
 			switch (op) {
 				case add:
 					return a + b;
@@ -42,28 +45,30 @@ public class CalculatorImpl implements Calculator {
 					if (b == 0)
 						throw new CalculatorException("Division by zero");
 					return m;
-			}
-		}
+				case sin:
+					return Math.sin(a);
+            	case cos:
+                	return Math.cos(a);
+        }
+        return 0;
+    }
 
-		return 0;
-	}
+    @Override
+    public double pop() throws CalculatorException {
+        if (stack_.isEmpty())
+            throw new CalculatorException();
+        return stack_.pop();
+    }
 
-	@Override
-	public double pop() throws CalculatorException {
-		if (stack_.isEmpty())
-			throw new CalculatorException();
-		return stack_.pop();
-	}
+    @Override
+    public void push(double v) {
+        stack_.push(v);
+    }
 
-	@Override
-	public void push(double v) {
-		stack_.push(v);
-	}
-
-	@Override
-	public void clear() {
-		stack_.clear();
-	}
+    @Override
+    public void clear() {
+        stack_.clear();
+    }
 
 	public double dotLogic(){
 

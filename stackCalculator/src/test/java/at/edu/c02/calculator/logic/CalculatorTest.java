@@ -116,6 +116,27 @@ public class CalculatorTest {
 			// e.getCause()
 		}
 	}
+	@Test
+	public void testSimpleCos() throws Exception {
+		Calculator calc = new CalculatorImpl();
+		calc.push(2.0);
+		double result = calc.perform(Operation.cos);
+
+		assertEquals(Math.cos(2), result, 0);
+
+
+	}
+	@Test
+	public void testSimpleSin() throws Exception {
+		Calculator calc = new CalculatorImpl();
+		calc.push(5.0);
+		double result = calc.perform(Operation.sin);
+
+		assertEquals(Math.sin(5), result, 0);
+
+
+	}
+
 
 	@Test
 	public void testSimpleDotOperation() throws Exception {
