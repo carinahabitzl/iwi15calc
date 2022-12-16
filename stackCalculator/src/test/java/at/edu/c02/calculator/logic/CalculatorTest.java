@@ -131,7 +131,6 @@ public class CalculatorTest {
 		Calculator calc = new CalculatorImpl();
 		calc.push(5.0);
 		double result = calc.perform(Operation.sin);
-
 		assertEquals(Math.sin(5), result, 0);
 
 
