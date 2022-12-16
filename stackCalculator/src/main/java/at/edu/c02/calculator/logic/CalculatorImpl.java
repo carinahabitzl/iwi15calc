@@ -10,6 +10,7 @@ import at.edu.c02.calculator.CalculatorException;
 public class CalculatorImpl implements Calculator {
 
 	private Stack<Double> stack_ = new Stack<Double>();
+	private double storeResult;
 
     @Override
     public double perform(Operation op) throws CalculatorException {
@@ -101,5 +102,17 @@ public class CalculatorImpl implements Calculator {
 
 		return result;
 	}
+
+	@Override
+	public void store(double result){
+		storeResult = result;
+	}
+
+	@Override
+	public double load() {
+		return storeResult;
+
+	}
+
 
 }

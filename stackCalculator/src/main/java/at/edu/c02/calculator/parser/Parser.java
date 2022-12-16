@@ -16,6 +16,7 @@ public class Parser {
 
 	private Calculator calc_;
 
+
 	public Parser(Calculator cal) {
 		if (cal == null)
 			throw new IllegalArgumentException("Calculator not set");
@@ -26,6 +27,8 @@ public class Parser {
 			XMLStreamException, CalculatorException {
 
 		double result = 0;
+
+
 		XMLEventReader r = createXmlEventReader(calculation);
 
 		while (r.hasNext()) {
@@ -45,6 +48,12 @@ public class Parser {
 			} else if ("operation".equals(e.asStartElement().getName()
 					.getLocalPart())) {
 				result = calc_.perform(readOperation(value));
+			} else if ("store".equals(e.asStartElement().getName()
+					.getLocalPart())){
+				calc_.store(result);
+			} else if ("load".equals(e.asStartElement().getName()
+					.getLocalPart())){
+				result = calc_.load();
 			}
 		}
 
