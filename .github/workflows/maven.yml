@@ -3,21 +3,21 @@
 
 name: JavaCI
 
-on: //wann wird gebuildet
+on: #wann wird gebuildet
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  release: //wenn ein Release published wird, führ diesen Workflow aus
+  release: #wenn ein Release published wird, führ diesen Workflow aus
     types:
-      - published
+      - published #neuen Branch erstellen und commiten und pushen + pull request in github erstellen - dort kann man Details anschauen - merge pull request
 
-jobs: //was passiert
+jobs: #was passiert
   build:
 
     runs-on: ubuntu-latest
 
-    steps: //verschiedene Schritte werden dann ausgeführt
+    steps: #verschiedene Schritte werden dann ausgeführt
     - uses: actions/checkout@v2
     - name: Set up JDK 11
       uses: actions/setup-java@v2
@@ -37,7 +37,7 @@ jobs: //was passiert
     - name: Build with Maven
       run: mvn -B package --file stackCalculator/pom.xml
 
-    - name: Create artifact //andere sollen Zugriff auf unseren Target Ordner bekommen
-      uses: actions/upload-artifact@v3 //von einem anderen Rep.
+    - name: Create artifact #andere sollen Zugriff auf unseren Target Ordner bekommen
+      uses: actions/upload-artifact@v3 #von einem anderen Rep.
       with:
         path: stackCalculator/target/
