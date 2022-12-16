@@ -8,7 +8,7 @@ on: #wann wird gebuildet
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  release: #wenn ein Release published wird, führ diesen Workflow aus
+  release: #wenn ein Release published wird, führ diesen Workflow aus ...
     types:
       - published #neuen Branch erstellen und commiten und pushen + pull request in github erstellen - dort kann man Details anschauen - merge pull request
 
