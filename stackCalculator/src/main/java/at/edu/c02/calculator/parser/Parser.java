@@ -24,7 +24,7 @@ public class Parser {
 		if (cal == null)
 			throw new IllegalArgumentException("Calculator not set");
 		calc_ = cal;
-		store = new Store(cal);
+		store = new Store();
 	}
 
 	public double parse(File calculation) throws FileNotFoundException,

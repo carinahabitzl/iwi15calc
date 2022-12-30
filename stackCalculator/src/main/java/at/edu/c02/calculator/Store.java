@@ -7,9 +7,6 @@ public class Store {
     private HashMap<String, Double> hashMap = new HashMap<>();
 
 
-    public Store(Calculator calc) {
-        this.calc = calc;
-    }
 
     public void store(String variable, double result) {
         if (hashMap.containsKey(variable)) hashMap.replace(variable, result);
